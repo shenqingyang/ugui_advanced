@@ -14,6 +14,7 @@ public class pieces : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         old_parent = transform.parent;
         temp.position = transform.position;
         temp.rotation = transform.rotation;
+        transform.localScale = new Vector3(0.8f,0.8f,0.8f);
         transform.SetParent(transform.parent.parent.parent);
         transform.position = eventData.position;
         Vector2 direction = center.transform.position - transform.position;
@@ -32,6 +33,7 @@ public class pieces : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        transform.localScale = new Vector3(1f, 1f, 1f);
         if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.tag == "piece") //��⵽Ŀ�����ΪImage
         {
             transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
